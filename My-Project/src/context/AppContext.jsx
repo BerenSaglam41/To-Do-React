@@ -22,8 +22,17 @@ export const AppContextProvider = (props) => {
     }
   }
   useEffect(()=> {
-    fetchTasks();
+    const storedTasks = localStorage.getItem("tasks");
+    if(storedTasks){
+      setTasks(JSON.parse(storedTasks));
+    }
+    else{
+      fetchTasks();
+    }
   },[]);
+  useEffect(()=>{
+    localStorage.setItem("tasks",JSON.stringify(tasks));
+  },[tasks]);
   const value = {
     navigate,
     tasks,setTasks,
