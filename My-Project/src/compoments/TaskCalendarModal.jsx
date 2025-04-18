@@ -30,7 +30,7 @@ const TaskCalendarModal = () => {
           <IoClose />
         </button>
 
-        <h2 className="text-2xl font-bold mb-4 text-center">📅 Görev Takvimi</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center text-black">📅 Görev Takvimi</h2>
 
         <TaskCalendarView tasks={tasks} />
       </div>
