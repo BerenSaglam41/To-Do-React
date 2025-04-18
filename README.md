@@ -29,13 +29,13 @@ Kendi görevlerini düzenli tutmak ve üretkenliğini artırmak için geliştiri
 ![Gündüz Modu](My-Project/screenshoots/1.png)
 
 ### 🌙 Gece Modu
-![Gece Modu](./screenshoots/2.png)
+![Gece Modu](My-Projectscreenshoots/2.png)
 
 ### ➕ Görev Ekleme
-![Görev Ekleme](./screenshoots/3.png)
+![Görev Takvimi](My-Projectscreenshoots/3.png)
 
 ### 📊 İlerleme Çubuğu
-![İlerleme Çubuğu](./screenshoots/4.png)
+![İlerleme Çubuğu-Sıralama Çubuğu](My-Projectscreenshoots/4.png)
 
 
 
