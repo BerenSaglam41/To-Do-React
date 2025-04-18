@@ -2,17 +2,29 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Header = () => {
-  const {setShowCalendar} = useContext(AppContext);
+  const {setShowCalendar,darkMode,setDarkMode} = useContext(AppContext);
   return (
-    <div className="flex justify-between items-center px-6 py-4 bg-pink-300 shadow">
+    <div className={`flex justify-between items-center px-6 py-4 shadow ${darkMode ? "bg-gray-400" : "bg-pink-300  "}`}>
       <h1 className="text-2xl font-bold">🧠 To-Do Dashboard</h1>
-
-      <button
-        onClick={() => setShowCalendar(true)}
-        className="bg-purple-100 text-purple-800 px-3 py-1 text-sm rounded-full hover:bg-purple-200 transition"
-      >
-        📅 Takvimi Göster
+      <div className='flex'>
+        <button
+          onClick={() => setDarkMode(prev => !prev)}
+          className={ darkMode ?
+            "bg-yellow-300 text-purple-800 px-3 py-1 text-sm rounded-full hover:bg-yellow-200 transition mr-2"
+            :
+            "bg-gray-400 text-purple-800 px-3 py-1 text-sm rounded-full hover:bg-gray-200 transition mr-2"
+          }
+        >
+          {darkMode ? "☀️" : "🌑"}
+          </button>
+        |
+        <button
+          onClick={() => setShowCalendar(true)}
+          className="ml-2 bg-purple-100 text-purple-800 px-3 py-1 text-sm rounded-full hover:bg-purple-200 transition"
+        >
+          📅 Takvimi Göster
       </button>
+      </div>
     </div>
   );
 };

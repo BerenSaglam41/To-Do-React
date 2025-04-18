@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const ProgressBar = () => {
-    const {tasks} = useContext(AppContext);
+    const {tasks,darkMode} = useContext(AppContext);
   if (!tasks || tasks.length === 0) return null;
 
   const total = tasks.length;
@@ -10,7 +10,7 @@ const ProgressBar = () => {
   const percent = Math.round((completed / total) * 100);
 
   return (
-    <div className="w-full max-w-md mx-auto my-4 bg-white px-2 py-3 rounded">
+    <div className={`w-full max-w-md mx-auto my-4 px-2 py-3 rounded ${darkMode ? "bg-gray-400":"bg-white"}`}>
       <div className="flex justify-between mb-1 text-sm font-medium text-gray-700">
         <span>Görev Tamamlanma ({completed}/{tasks.length})</span>
         <span>{percent}%</span>

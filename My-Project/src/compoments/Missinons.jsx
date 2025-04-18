@@ -11,7 +11,8 @@ const Missinons = () => {
     resetTasks,
     setShowSortMenu,
     showSortMenu,
-    setSuccessMessage
+    setSuccessMessage,
+    darkMode
   } = useContext(AppContext);
 
   const [hideCompleted, setHideCompleted] = useState(false);
@@ -72,11 +73,9 @@ const Missinons = () => {
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
-
     const updatedTasks = Array.from(tasks);
     const [movedItem] = updatedTasks.splice(result.source.index, 1);
     updatedTasks.splice(result.destination.index, 0, movedItem);
-
     setTasks(updatedTasks);
   };
 
@@ -109,7 +108,6 @@ const Missinons = () => {
         {tasks.length === 0 && (
           <p className="text-gray-500">Henüz görev yok.</p>
         )}
-
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="tasks">
             {(provided) => (
@@ -121,7 +119,7 @@ const Missinons = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="bg-white p-4 rounded shadow break-words whitespace-normal mb-2"
+                        className={`p-4 rounded shadow break-words whitespace-normal mb-2 ${darkMode ? "bg-gray-400" : ""}`}
                       >
                         <div className='flex justify-between'>
                           <div className="flex justify-between items-center">

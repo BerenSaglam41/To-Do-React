@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
+import Tojson from './ToJson';
 
 const TaskCalendarView = () => {
     const {tasks} = useContext(AppContext);
@@ -55,6 +56,9 @@ const TaskCalendarView = () => {
           </div>
         </div>
       ))}
+      <div className='items-center text-center'>
+        <Tojson/>  
+      </div>
     </div>
   );
 };

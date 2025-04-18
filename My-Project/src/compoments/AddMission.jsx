@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const AddMission = () => {
-  const { setTasks, setNewTask, newTask,errorMessage,setErrorMessage,successMessage,setSuccessMessage} = useContext(AppContext);
+  const { setTasks, setNewTask, newTask,errorMessage,setErrorMessage,successMessage,setSuccessMessage,darkMode  } = useContext(AppContext);
 
   const getCurrentDate = () => new Date().toISOString().slice(0, 10);
 
@@ -65,13 +65,13 @@ const AddMission = () => {
           {successMessage}
         </p>
       )}
-      <section className="bg-white p-6 rounded shadow w-full max-w-md mx-auto">
+      <section className={`p-6 rounded shadow w-full max-w-md mx-auto ${darkMode ? "bg-gray-400" : "bg-white"}`}>
         <input
           type="text"
           placeholder="Başlık"
           value={newTask.title}
           onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-          className="w-full p-2 border rounded mb-3"
+          className={`w-full p-2 border rounded mb-3 ${darkMode ? "border-black text-black" : ""}`}
         />
         <textarea
           placeholder="Açıklama"
@@ -82,20 +82,20 @@ const AddMission = () => {
             e.target.style.height = `${e.target.scrollHeight}px`; // içeriğe göre ayarla
           }}
           rows={1}
-          className="w-full p-2 border rounded mb-3 resize-none overflow-hidden transition-all duration-150"
+          className={`w-full p-2 border rounded mb-3 resize-none overflow-hidden transition-all duration-150 ${darkMode ? "border-black text-black" : ""}`}
         />
         <div className="flex gap-2 mb-3">
           <input
             type="date"
             value={newTask.date}
             onChange={(e) => setNewTask({ ...newTask, date: e.target.value })}
-            className="w-1/2 p-2 border rounded"
+            className={`w-1/2 p-2 border rounded ${darkMode ? "text-black" : ""}`}
           />
           <input
             type="time"
             value={newTask.time}
             onChange={(e) => setNewTask({ ...newTask, time: e.target.value })}
-            className="w-1/2 p-2 border rounded"
+            className={`w-1/2 p-2 border rounded ${darkMode ? "text-black" : ""}`}
           />
         </div>
         <button

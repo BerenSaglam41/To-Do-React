@@ -2,7 +2,7 @@ import React,{useContext,useRef,useEffect} from 'react'
 import { AppContext } from '../context/AppContext';
 
 const EditTask = () => {
-    const { editingTask, setEditingTask, setTasks,setErrorMessage,setSuccessMessage } = useContext(AppContext);
+    const { editingTask, setEditingTask, setTasks,setErrorMessage,setSuccessMessage,darkMode } = useContext(AppContext);
     const textAreaRef = useRef(null);
     const getCurrentDate = () => new Date().toISOString().slice(0, 10);
     const getCurrentTime = () => new Date().toTimeString().slice(0, 5);
@@ -12,7 +12,9 @@ const EditTask = () => {
           [field]: value,
         }));
       };
-    
+      const handleCancel = () => {
+        setEditingTask(null);
+      }
       // Düzenlemeyi kaydet
       const handleSave = () => {
         if (!editingTask.title) return setErrorMessage("Başlık boş olamaz!");
@@ -47,15 +49,15 @@ const EditTask = () => {
       });
   return (
     <div>
-      <section className="bg-white p-6 rounded shadow space-y-4">
-          <h2 className="text-xl font-semibold">✏️ Görev Düzenle</h2>
+      <section className={`p-6 rounded shadow space-y-4 ${darkMode ? "bg-gray-600" : "bg-white"}`}>
+          <h2 className="text-xl font-semibold text-black">✏️ Görev Düzenle</h2>
           {editingTask ? (
             <div className="space-y-3">
               <input
                 type="text"
                 value={editingTask.title}
                 onChange={(e) => handleEditChange("title", e.target.value)}
-                className="w-full p-2 border rounded"
+                className={`w-full p-2 border rounded ${darkMode ? "text-black border-black" : ""}`}
               />
               <textarea
                 ref={textAreaRef} // 👈 buraya bağladık
@@ -65,28 +67,36 @@ const EditTask = () => {
                   e.target.style.height = 'auto';
                   e.target.style.height = `${e.target.scrollHeight}px`;
                 }}
-                className="w-full p-2 border rounded resize-none overflow-hidden transition-all duration-150"
+                className={`w-full p-2 border rounded resize-none overflow-hidden transition-all duration-150 ${darkMode ? "text-black border-black" : ""}`}
               />
               <div className="flex gap-2">
                 <input
                   type="date"
                   value={editingTask.date}
                   onChange={(e) => handleEditChange("date", e.target.value)}
-                  className="w-1/2 p-2 border rounded"
+                  className={`w-1/2 p-2 border rounded ${darkMode ? "border-black text-black" : ""}`}
                 />
                 <input
                   type="time"
                   value={editingTask.time}
                   onChange={(e) => handleEditChange("time", e.target.value)}
-                  className="w-1/2 p-2 border rounded"
+                  className={`w-1/2 p-2 border rounded ${darkMode ? "border-black text-black" : ""}`}
                 />
               </div>
-              <button
-                onClick={handleSave}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-2"
-              >
-                Kaydet
-              </button>
+              <div className='justify-between flex'> 
+                <button
+                  onClick={handleSave}
+                  className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-2"
+                >
+                  Kaydet
+                </button>
+                <button 
+                  onClick={handleCancel}
+                  className='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mt-2'
+                >
+                  İptal
+                </button>
+              </div>
             </div>
           ) : (
             <p className="text-gray-500">Bir görevi düzenlemek için soldan seç.</p>
