@@ -16,6 +16,11 @@ export const AppContextProvider = (props) => {
       time: "",
   });
 
+  const resetTasks = async () => {
+      setTasks([...Tasks]); 
+      localStorage.removeItem("tasks"); 
+  }
+
   const fetchTasks = async () => {
     if(tasks.length === 0 ){
       setTasks((prev)=>([...prev,...Tasks]));
@@ -38,6 +43,7 @@ export const AppContextProvider = (props) => {
     tasks,setTasks,
     editingTask,setEditingTask,
     newTask,setNewTask,
+    resetTasks,
   };
 
   return (
