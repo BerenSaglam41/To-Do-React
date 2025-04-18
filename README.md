@@ -26,7 +26,7 @@ Kendi görevlerini düzenli tutmak ve üretkenliğini artırmak için geliştiri
 ## 🖼 Ekran Görüntüleri
 
 ### 🌞 Gündüz Modu
-![Gündüz Modu](./screenshoots/1.png)
+![Gündüz Modu](My-Project/screenshoots/1.png)
 
 ### 🌙 Gece Modu
 ![Gece Modu](./screenshoots/2.png)
