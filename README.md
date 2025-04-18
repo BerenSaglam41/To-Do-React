@@ -23,11 +23,20 @@ Kendi görevlerini düzenli tutmak ve üretkenliğini artırmak için geliştiri
 - html2pdf.js (opsiyonel)
 - localStorage (veri saklama)
 
-## 📸 Görseller
-![Görev Listesi Görünümü](./screenshoots/1.png)
-![Görev Listesi Görünümü](./screenshoots/2.png)
-![Görev Listesi Görünümü](./screenshoots/3.png)
-![Görev Listesi Görünümü](./screenshoots/4.png)
+## 📸 Ekran Görüntüleri
+
+### 🗂 Görev Listesi (Gündüz Modu)
+![Gündüz Modu](./screenshoots/1.png)
+
+### 🌙 Gece Modu
+![Gece Modu](./screenshoots/2.png)
+
+### 🧩 Görev Ekleme Formu
+![Görev Ekleme](./screenshoots/3.png)
+
+### 📊 İlerleme Çubuğu
+![İlerleme Çubuğu](./screenshoots/4.png)
+
 
 ## 🧪 Kurulum
 > Zip indir kur npm i komutu kullan ve npm run dev ile devam et.
