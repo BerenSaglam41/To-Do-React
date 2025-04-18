@@ -9,11 +9,13 @@ export const AppContextProvider = (props) => {
   const navigate = useNavigate()
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
+  const [showSortMenu,setShowSortMenu] = useState(false);
   const [newTask, setNewTask] = useState({
       title: "",
       description: "",
       date: "",
       time: "",
+      completed : false
   });
 
   const resetTasks = async () => {
@@ -44,6 +46,7 @@ export const AppContextProvider = (props) => {
     editingTask,setEditingTask,
     newTask,setNewTask,
     resetTasks,
+    showSortMenu,setShowSortMenu,
   };
 
   return (

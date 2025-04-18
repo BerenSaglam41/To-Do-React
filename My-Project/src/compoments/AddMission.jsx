@@ -4,13 +4,10 @@ import { AppContext } from '../context/AppContext';
 const AddMission = () => {
   const { setTasks, setNewTask, newTask } = useContext(AppContext);
 
-  // Bugünün tarihini "YYYY-MM-DD" formatında alır
   const getCurrentDate = () => new Date().toISOString().slice(0, 10);
 
-  // Şu anki saati "HH:MM" formatında alır
   const getCurrentTime = () => new Date().toTimeString().slice(0, 5);
 
-  // Bileşen yüklendiğinde başlangıç tarih/saat ayarla
   useEffect(() => {
     setNewTask({
       title: '',
@@ -20,16 +17,15 @@ const AddMission = () => {
     });
   }, []);
 
-  // Görev ekleme işlemi
   const handleAddTask = () => {
     if (!newTask.title) return alert("Başlık boş olamaz!");
     const task = {
       ...newTask,
       id: Date.now(),
+      completed : false
     };
     setTasks((prev) => [...prev, task]);
 
-    // Formu sıfırla, tarih ve saat tekrar şu anki zaman olsun
     setNewTask({
       title: '',
       description: '',

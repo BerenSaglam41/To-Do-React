@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../context/AppContext';
+import SortMenu from './SortMenu';
 const Missinons = () => {
-    const {tasks,setEditingTask,setTasks,resetTasks} = useContext(AppContext);
+    const {tasks,setEditingTask,setTasks,resetTasks,setShowSortMenu,showSortMenu} = useContext(AppContext);
 
     const handleEdit = (task) => {
         setEditingTask({ ...task }); // kopya ver ki inputlar controlled olsun
@@ -18,13 +19,52 @@ const Missinons = () => {
       if (diffDays <= 2) return "Tarihi yaklaşıyor";
       return null;
     }
-
+    const handleComplete = (task) => {
+      setTasks((prevTasks) =>
+        prevTasks.map((t) =>
+          t.id === task.id ? { ...t, completed: !t.completed } : t
+        )
+      );
+    };
+    const toggleSortMenu = () => {
+      setShowSortMenu((prev) => !prev);
+    };
+    const handleSort = (criterion) => {
+      const sorted = [...tasks];
+  
+      switch (criterion) {
+        case "title":
+          sorted.sort((a, b) => a.title.localeCompare(b.title));
+          break;
+        case "date":
+          sorted.sort((a, b) => new Date(a.date) - new Date(b.date));
+          break;
+        case "completed":
+          sorted.sort((a, b) => Number(a.completed) - Number(b.completed));
+          break;
+        default:
+          break;
+      }
+    
+      setTasks(sorted);
+      setShowSortMenu(false); // menüyü kapat
+    };
   return (
     <div>
         <section className="space-y-4">
           <div className='flex justify-between'>
             <h2 className="text-xl font-semibold">📝 Görevler</h2>
-            <button className='px-4 py-2 rounded-full bg-blue-200 hover:bg-blue-400 active:bg-white text-white transition duration-100' onClick={()=>resetTasks()}>Reset Tasks</button>
+            <div className='inline-block'>
+              <button className='px-4 py-2 rounded-full bg-green-200 hover:bg-green-400 active:bg-white text-white transition duration-100' onClick={()=>toggleSortMenu()}>Sort</button>
+              |
+              <div className='absolute'>
+                {showSortMenu && (
+                <SortMenu onSort={handleSort} />
+                )}     
+              </div>
+              
+              <button className='px-4 py-2 rounded-full bg-blue-200 hover:bg-blue-400 active:bg-white text-white transition duration-100' onClick={()=>resetTasks()}>Reset Tasks</button>
+            </div>
           </div>
           {tasks.length === 0 && (
             <p className="text-gray-500">Henüz görev yok.</p>
@@ -36,9 +76,9 @@ const Missinons = () => {
                 <p
                   className={
                     getTaskStatus(task.date) === "Tarih geçti"
-                      ? "text-white font-semibold font-bold bg-red-950 px-2 py-2 rounded-full "
+                      ? "text-white font-semibold font-bold bg-red-950 px-2 py-2 rounded-full text-xs "
                       : getTaskStatus(task.date) === "Tarihi yaklaşıyor"
-                      ? "text-white py-2 font-semibold bg-red-500 rounded-full px-2"
+                      ? "text-white py-2 font-semibold bg-red-500 rounded-full px- text-xs px-2"
                       : ""
                   }
                 >
@@ -49,23 +89,32 @@ const Missinons = () => {
               <div className="text-sm text-gray-500 mt-1">
                 📅 {task.date} ⏰ {task.time}
               </div>
-              <div className='flex justify-between'>
-                <button
-                  onClick={() => handleEdit(task)}
-                  className={
-                    getTaskStatus(task.date) === "Tarih geçti" ?
-                    "text-black-500 hover:underline mt-2 pointer-events-none" : 
-                    "text-blue-500 hover:underline mt-2"
-                  }
-                >
-                  Düzenle
-                </button> 
-                <button 
-                  onClick={()=>handleDelete(task)}
-                  className="text-red-500 hover:underline mt-2 ml-2"
-                >
-                  Sil
+              <div className='flex justify-between mt-3'>
+                <button onClick={()=>handleComplete(task)} className={task.completed ? 
+                  "bg-red-500 text-xs rounded-full text-white hover:bg-red-600 active:bg-white transition duration-100" : 
+                  "bg-green-500 text-xs rounded-full text-white px-1 active:bg-white transition duration-100"}>
+                  {task.completed ? "Yapılmadı Olarak İşaretle" : "Yapıldı Olarak İşaretle" }
                 </button>
+                <div>
+                  <button
+                    onClick={() => handleEdit(task)}
+                    className={
+                      getTaskStatus(task.date) === "Tarih geçti" ?
+                      "text-black-500 hover:underline mt-2 pointer-events-none mx-2" : 
+                      "text-blue-500 hover:underline mt-2 mx-2"
+                    }
+                  >
+                    Düzenle
+                  </button> 
+                  |
+                  <button 
+                    onClick={()=>handleDelete(task)}
+                    className="text-red-500 hover:underline mt-2 ml-2"
+                  >
+                    Sil
+                  </button>
+                </div>
+
               </div>
             </div>
           ))}
