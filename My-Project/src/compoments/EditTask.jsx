@@ -83,7 +83,7 @@ const EditTask = () => {
               </div>
               <button
                 onClick={handleSave}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-2"
               >
                 Kaydet
               </button>
