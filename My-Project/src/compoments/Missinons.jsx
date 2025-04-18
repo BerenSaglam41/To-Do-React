@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext';
 import SortMenu from './SortMenu';
 const Missinons = () => {
     const {tasks,setEditingTask,setTasks,resetTasks,setShowSortMenu,showSortMenu,setSuccessMessage} = useContext(AppContext);
-
+    const [hideCompleted,setHideCompleted] = useState(false)
+    const visibleTasks = hideCompleted ? tasks.filter(task => !task.completed) : tasks;
     const handleEdit = (task) => {
         setEditingTask({ ...task }); // kopya ver ki inputlar controlled olsun
     };
@@ -56,6 +57,15 @@ const Missinons = () => {
         <section className="space-y-4">
           <div className='flex justify-between'>
             <h2 className="text-xl font-semibold">📝 Görevler</h2>
+            <button
+              onClick={() => setHideCompleted(prev => !prev)}
+              className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium transition duration-150
+                ${hideCompleted
+                  ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
+                  : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}
+            >
+              {hideCompleted ? "✅ Tamamlanmayanları Göster" : "🙈 Tamamlananları Gizle"}
+            </button>
             <div className='inline-block'>
               <button className='px-4 py-2 rounded-full bg-green-200 hover:bg-green-400 active:bg-white text-white transition duration-100' onClick={()=>toggleSortMenu()}>Sort</button>
               |
@@ -71,7 +81,7 @@ const Missinons = () => {
           {tasks.length === 0 && (
             <p className="text-gray-500">Henüz görev yok.</p>
           )}
-          {tasks.map((task) => (
+          {visibleTasks.map((task) => (
             <div key={task.id} className="bg-white p-4 rounded shadow break-words whitespace-normal">
               <div className='flex justify-between'>
                 <div className="flex justify-between items-center">
