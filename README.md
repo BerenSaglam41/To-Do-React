@@ -23,19 +23,20 @@ Kendi görevlerini düzenli tutmak ve üretkenliğini artırmak için geliştiri
 - html2pdf.js (opsiyonel)
 - localStorage (veri saklama)
 
-## 📸 Ekran Görüntüleri
+## 🖼 Ekran Görüntüleri
 
-### 🗂 Görev Listesi (Gündüz Modu)
-![Gündüz Modu](screenshoots/1.png)
+### 🌞 Gündüz Modu
+![Gündüz Modu](./screenshoots/1.png)
 
 ### 🌙 Gece Modu
 ![Gece Modu](./screenshoots/2.png)
 
-### 🧩 Görev Ekleme Formu
+### ➕ Görev Ekleme
 ![Görev Ekleme](./screenshoots/3.png)
 
 ### 📊 İlerleme Çubuğu
 ![İlerleme Çubuğu](./screenshoots/4.png)
+
 
 
 ## 🧪 Kurulum
