@@ -1,10 +1,10 @@
 import React from 'react';
-import { AppContext } from '../context/AppContext';
 import Header from '../compoments/header';
 import Missinons from '../compoments/Missinons';
 import AddMission from '../compoments/AddMission';
 import EditTask from '../compoments/EditTask';
 import ProgressBar from '../compoments/ProgressBar';
+import TaskCalendarModal from '../compoments/TaskCalendarModal';
 
 const HomePage = () => {
   return (
@@ -18,6 +18,7 @@ const HomePage = () => {
         <div>
           <AddMission/>
           <ProgressBar/>
+           <TaskCalendarModal/>
         </div>
         {/* Sağ: Görev Düzenleme */}
         <EditTask/>

@@ -10,6 +10,7 @@ export const AppContextProvider = (props) => {
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
   const [showSortMenu,setShowSortMenu] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [newTask, setNewTask] = useState({
@@ -50,7 +51,8 @@ export const AppContextProvider = (props) => {
     resetTasks,
     showSortMenu,setShowSortMenu,
     errorMessage,setErrorMessage,
-    successMessage,setSuccessMessage
+    successMessage,setSuccessMessage,
+    showCalendar,setShowCalendar
   };
 
   return (

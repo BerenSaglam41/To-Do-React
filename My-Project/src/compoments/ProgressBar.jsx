@@ -12,7 +12,7 @@ const ProgressBar = () => {
   return (
     <div className="w-full max-w-md mx-auto my-4 bg-white px-2 py-3 rounded">
       <div className="flex justify-between mb-1 text-sm font-medium text-gray-700">
-        <span>Görev Tamamlanma ({tasks.length}/{completed})</span>
+        <span>Görev Tamamlanma ({completed}/{tasks.length})</span>
         <span>{percent}%</span>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-4">

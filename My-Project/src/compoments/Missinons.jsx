@@ -87,7 +87,7 @@ const Missinons = () => {
                 <div className="flex justify-between items-center">
                   <h3 className="font-bold text-lg text-gray-800">{task.title}</h3>
                   <span
-                    className={`text-sm font-medium px-3 py-1 rounded-full 
+                    className={`text-sm font-medium px-3 py-1 rounded-full ml-2 
                       ${task.completed ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}
                   >
                     {task.completed ? "Tamamlandı!" : "Tamamlanmadı!"}
