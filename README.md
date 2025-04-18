@@ -24,10 +24,10 @@ Kendi görevlerini düzenli tutmak ve üretkenliğini artırmak için geliştiri
 - localStorage (veri saklama)
 
 ## 📸 Görseller
-![Görev Listesi Görünümü](./screenshots/1.png)
-![Görev Listesi Görünümü](./screenshots/2.png)
-![Görev Listesi Görünümü](./screenshots/3.png)
-![Görev Listesi Görünümü](./screenshots/4.png)
+![Görev Listesi Görünümü](./screenshoots/1.png)
+![Görev Listesi Görünümü](./screenshoots/2.png)
+![Görev Listesi Görünümü](./screenshoots/3.png)
+![Görev Listesi Görünümü](./screenshoots/4.png)
 
 ## 🧪 Kurulum
 > Zip indir kur npm i komutu kullan ve npm run dev ile devam et.
