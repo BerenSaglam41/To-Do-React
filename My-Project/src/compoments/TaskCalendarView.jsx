@@ -9,7 +9,11 @@ const TaskCalendarView = () => {
 
   // 1. Görevleri tarihe göre sırala
   const sortedTasks = [...tasks].sort((a, b) => new Date(a.date) - new Date(b.date));
-
+  const getDayName = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('tr-TR', { weekday: 'long' }); // Türkçe gün adı
+  };
+  
   // 2. Grupla
   const groupedTasks = sortedTasks.reduce((acc, task) => {
     if (!acc[task.date]) acc[task.date] = [];
@@ -21,9 +25,9 @@ const TaskCalendarView = () => {
     <div className="space-y-6">
       {Object.entries(groupedTasks).map(([date, tasksOnDate]) => (
         <div key={date} className="border-b pb-4">
-          <h3 className="text-base font-bold text-blue-600 mb-2 border-l-4 border-blue-400 pl-2">
-            📅 {date} ({tasksOnDate.length} görev)
-          </h3>
+            <h3 className="text-base font-bold text-blue-600 mb-2 border-l-4 border-blue-400 pl-2">
+            📅 {date} ({getDayName(date)}) ({tasksOnDate.length} görev)
+            </h3>
           <div className="space-y-2">
             {tasksOnDate.map((task) => (
               <div

@@ -6,12 +6,18 @@ import { AppContext } from '../context/AppContext';
 const TaskCalendarModal = () => {
   const { showCalendar, setShowCalendar, tasks } = useContext(AppContext);
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-  
-    return () => {
+    if (showCalendar) {
+      document.body.style.overflow = 'hidden';
+    } else {
       document.body.style.overflow = 'auto';
     }
-  }, [])
+  
+    // sayfa reload olsa da scroll geri gelsin
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [showCalendar]);
+  
   if (!showCalendar) return null;
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex justify-center items-start p-6 overflow-y-auto">
