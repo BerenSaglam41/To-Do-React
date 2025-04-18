@@ -2,13 +2,15 @@ import React, { useContext } from 'react'
 import { AppContext } from '../context/AppContext';
 import SortMenu from './SortMenu';
 const Missinons = () => {
-    const {tasks,setEditingTask,setTasks,resetTasks,setShowSortMenu,showSortMenu} = useContext(AppContext);
+    const {tasks,setEditingTask,setTasks,resetTasks,setShowSortMenu,showSortMenu,setSuccessMessage} = useContext(AppContext);
 
     const handleEdit = (task) => {
         setEditingTask({ ...task }); // kopya ver ki inputlar controlled olsun
     };
     const handleDelete = (task) => {
     setTasks((prev) => prev.filter((t) => t.id !== task.id));
+    setSuccessMessage("Görev Başarıyla Silindi!");
+    setTimeout(() => setSuccessMessage(''), 3000);
     }
     const getTaskStatus = (dateStr) => {
       const today = new Date();
@@ -70,9 +72,17 @@ const Missinons = () => {
             <p className="text-gray-500">Henüz görev yok.</p>
           )}
           {tasks.map((task) => (
-            <div key={task.id} className="bg-white p-4 rounded shadow">
+            <div key={task.id} className="bg-white p-4 rounded shadow break-words whitespace-normal">
               <div className='flex justify-between'>
-                <h3 className="font-bold text-lg">{task.title}</h3>
+                <div className="flex justify-between items-center">
+                  <h3 className="font-bold text-lg text-gray-800">{task.title}</h3>
+                  <span
+                    className={`text-sm font-medium px-3 py-1 rounded-full 
+                      ${task.completed ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}
+                  >
+                    {task.completed ? "Tamamlandı!" : "Tamamlanmadı!"}
+                  </span>
+                </div>
                 <p
                   className={
                     getTaskStatus(task.date) === "Tarih geçti"
@@ -85,7 +95,7 @@ const Missinons = () => {
                   {getTaskStatus(task.date)}
                 </p>
               </div>
-              <p className="text-gray-600">{task.description}</p>
+              <p className="text-gray-600 break-words whitespace-normal">{task.description}</p>
               <div className="text-sm text-gray-500 mt-1">
                 📅 {task.date} ⏰ {task.time}
               </div>

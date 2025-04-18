@@ -4,6 +4,7 @@ import Header from '../compoments/header';
 import Missinons from '../compoments/Missinons';
 import AddMission from '../compoments/AddMission';
 import EditTask from '../compoments/EditTask';
+import ProgressBar from '../compoments/ProgressBar';
 
 const HomePage = () => {
   return (
@@ -14,7 +15,10 @@ const HomePage = () => {
         {/* Sol: Görev Listesi */}
         <Missinons/>
         {/* Orta: Yeni Görev Ekle */}
-        <AddMission/>
+        <div>
+          <AddMission/>
+          <ProgressBar/>
+        </div>
         {/* Sağ: Görev Düzenleme */}
         <EditTask/>
       </main>
