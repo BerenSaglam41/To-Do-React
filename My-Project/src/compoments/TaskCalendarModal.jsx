@@ -1,14 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import TaskCalendarView from './TaskCalendarView';
 import { IoClose } from 'react-icons/io5';
 import { AppContext } from '../context/AppContext';
 
 const TaskCalendarModal = () => {
   const { showCalendar, setShowCalendar, tasks } = useContext(AppContext);
-
-  // ❗ Modal sadece görünüyorsa return et, yoksa null döndür
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  
+    return () => {
+      document.body.style.overflow = 'auto';
+    }
+  }, [])
   if (!showCalendar) return null;
-
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex justify-center items-start p-6 overflow-y-auto">
       <div className="bg-white w-full max-w-4xl rounded-lg shadow-lg relative p-6 mt-6">
